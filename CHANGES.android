@@ -1,0 +1,4 @@
+One manual change is required after running update_source.sh:
+
+In src/org/mockito/internal/stubbing/defaultanswers/ReturnsMocks.java, remove
+the unused import org.mockito.internal.creation.jmock.ClassImposterizer.

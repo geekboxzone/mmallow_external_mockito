@@ -4,6 +4,8 @@
 #
 # Retrieves the current Mockito source code into the current direcory, exlcuding portions related
 # to constructing Mock objects in the JVM.
+#
+# See also CHANGES.android for required manual changes to the Mockito source code.
 
 SOURCE="git://github.com/mockito/mockito.git"
 INCLUDE="
