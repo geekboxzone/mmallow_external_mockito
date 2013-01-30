@@ -25,3 +25,11 @@ LOCAL_MODULE := mockito-api
 LOCAL_SDK_VERSION := 14
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_JAVA_LIBRARY)
+
+# Main target for dependent projects. Pulls in Mockito and the Dexmaker MockMaker.
+include $(CLEAR_VARS)
+LOCAL_MODULE := mockito-target
+LOCAL_STATIC_JAVA_LIBRARIES := mockito-api dexmaker-mockmaker
+LOCAL_SDK_VERSION := 14
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_STATIC_JAVA_LIBRARY)
