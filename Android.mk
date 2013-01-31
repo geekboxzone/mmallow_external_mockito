@@ -22,7 +22,7 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 LOCAL_STATIC_JAVA_LIBRARIES := junit4-target objenesis-target
 LOCAL_MODULE := mockito-api
-LOCAL_SDK_VERSION := 14
+LOCAL_SDK_VERSION := 10
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
@@ -30,6 +30,6 @@ include $(BUILD_STATIC_JAVA_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_MODULE := mockito-target
 LOCAL_STATIC_JAVA_LIBRARIES := mockito-api dexmaker-mockmaker
-LOCAL_SDK_VERSION := 14
+LOCAL_SDK_VERSION := 10
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_JAVA_LIBRARY)
