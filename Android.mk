@@ -16,20 +16,23 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# This is a "private" module - projects should use "mockito-target" instead!
-# It does not provide a MockMaker implementation, hence cannot be used directly.
+# Builds the Mockito source code, but does not include any run-time
+# dependencies. Most projects should use mockito-target instead, which includes
+# everything needed to run Mockito tests.
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_STATIC_JAVA_LIBRARIES := junit4-target objenesis-target
+LOCAL_JAVA_LIBRARIES := junit4-target objenesis-target
 LOCAL_MODULE := mockito-api
 LOCAL_SDK_VERSION := 10
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_JAVA_LIBRARY)
 
-# Main target for dependent projects. Pulls in Mockito and the Dexmaker MockMaker.
+# Main target for dependent projects. Bundles all the run-time dependencies
+# needed to run Mockito tests on the device.
 include $(CLEAR_VARS)
 LOCAL_MODULE := mockito-target
-LOCAL_STATIC_JAVA_LIBRARIES := mockito-api dexmaker dexmaker-mockmaker
+LOCAL_STATIC_JAVA_LIBRARIES := mockito-api dexmaker dexmaker-mockmaker \
+    objenesis-target junit4-target
 LOCAL_SDK_VERSION := 10
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_STATIC_JAVA_LIBRARY)
