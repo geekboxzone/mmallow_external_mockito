@@ -10,7 +10,7 @@ sourceSets {
 
 jar {
     baseName 'mockito'
-    appendix 'api'
+    classifier 'api'
 }
 
 dependencies {
