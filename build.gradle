@@ -15,6 +15,6 @@ jar {
 
 dependencies {
     compile getAndroidPrebuilt('10')
-    compile project(':external:objenesis')
-    compile project(':external:junit')
+    compile project(':objenesis')
+    compile project(':junit')
 }
