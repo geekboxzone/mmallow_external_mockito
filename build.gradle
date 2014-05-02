@@ -15,7 +15,7 @@ jar {
 
 dependencies {
     compile getAndroidPrebuilt('10')
-    compile project(':objenesis')
-    compile project(':junit')
     compile project(':hamcrest')
+    compile project(':objenesis')
+    compile project(path: ':junit', configuration: 'target')
 }
