@@ -1,9 +1,22 @@
 apply plugin: 'java'
 
+// TODO(jboekeno): Create a host based build
 sourceSets {
     main {
         java {
             srcDirs = ['src']
+            exclude 'org/mockito/internal/creation/cglib/**',
+                    'org/mockito/internal/creation/jmock/**',
+                    'org/mockito/internal/creation/AbstractMockitoMethodProxy.java',
+                    'org/mockito/internal/creation/AcrossJVMSerializationFeature.java',
+                    'org/mockito/internal/creation/CglibMockMaker.java',
+                    'org/mockito/internal/creation/DelegatingMockitoMethodProxy.java',
+                    'org/mockito/internal/creation/MethodInterceptorFilter.java',
+                    'org/mockito/internal/creation/MockitoMethodProxy.java',
+                    'org/mockito/internal/creation/SerializableMockitoMethodProxy.java',
+                    'org/mockito/internal/invocation/realmethod/FilteredCGLIBProxyRealMethod.java',
+                    'org/mockito/internal/invocation/realmethod/CGLIBProxyRealMethod.java',
+                    'org/mockito/internal/invocation/realmethod/HasCGLIBMethodProxy.java'
         }
     }
 }
