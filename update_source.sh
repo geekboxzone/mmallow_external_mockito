@@ -2,28 +2,22 @@
 #
 # Copyright 2013 The Android Open Source Project.
 #
-# Retrieves the current Mockito source code into the current direcory, exlcuding portions related
-# to constructing Mock objects in the JVM.
+# Retrieves the current Mockito source code into the current directory, excluding portions related
+# to mockito's internal build system and javadoc.
 
 SOURCE="git://github.com/mockito/mockito.git"
 INCLUDE="
     LICENSE
+    cglib-and-asm
     src
     "
 
 EXCLUDE="
-    src/org/mockito/internal/creation/cglib
-    src/org/mockito/internal/creation/jmock
-    src/org/mockito/internal/creation/AbstractMockitoMethodProxy.java
-    src/org/mockito/internal/creation/AcrossJVMSerializationFeature.java
-    src/org/mockito/internal/creation/CglibMockMaker.java
-    src/org/mockito/internal/creation/DelegatingMockitoMethodProxy.java
-    src/org/mockito/internal/creation/MethodInterceptorFilter.java
-    src/org/mockito/internal/creation/MockitoMethodProxy.java
-    src/org/mockito/internal/creation/SerializableMockitoMethodProxy.java
-    src/org/mockito/internal/invocation/realmethod/FilteredCGLIBProxyRealMethod.java
-    src/org/mockito/internal/invocation/realmethod/CGLIBProxyRealMethod.java
-    src/org/mockito/internal/invocation/realmethod/HasCGLIBMethodProxy.java
+    cglib-and-asm/lib
+    cglib-and-asm/.project
+    cglib-and-asm/.classpath
+    cglib-and-asm/build.gradle
+    cglib-and-asm/mockito-repackaged.iml
     "
 
 working_dir="$(mktemp -d)"
