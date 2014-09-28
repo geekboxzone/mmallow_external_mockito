@@ -1,8 +1,19 @@
 apply plugin: 'java'
 
-// TODO(jboekeno): Create a host based build
+configurations {
+    // similar to 'default', export compile-time dependencies
+    host.extendsFrom(hostCompile)
+    target.extendsFrom(targetCompile)
+}
+
 sourceSets {
-    main {
+    host {
+        java {
+            srcDirs = ['src', 'cglib-and-asm/src']
+        }
+    }
+
+    target {
         java {
             srcDirs = ['src']
             exclude 'org/mockito/internal/creation/cglib/**',
@@ -21,14 +32,32 @@ sourceSets {
     }
 }
 
-jar {
-    baseName 'mockito'
-    classifier 'api'
+dependencies {
+    targetCompile project(':hamcrest')
+    targetCompile project(':objenesis')
+    targetCompile project(path: ':junit', configuration: 'target')
+
+    hostCompile project(':hamcrest')
+    hostCompile project(':objenesis')
+    hostCompile project(path: ':junit', configuration: 'host')
+    hostCompile 'org.apache.ant:ant:1.8.0'
 }
 
-dependencies {
-    compile getAndroidPrebuilt('10')
-    compile project(':hamcrest')
-    compile project(path: ':junit', configuration: 'target')
-    compile project(':objenesis')
+task targetJar(type: Jar) {
+    from sourceSets.target.output
+    dependsOn targetClasses
+    baseName "mockito"
+    classifier "target"
+}
+
+task hostJar(type: Jar) {
+    from sourceSets.host.output
+    dependsOn hostClasses
+    baseName "mockito"
+    classifier "host"
+}
+
+artifacts {
+    host hostJar
+    target targetJar
 }
